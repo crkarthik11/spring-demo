@@ -1,8 +1,8 @@
 package com.thinkxfactor.springdemo.entities;
 
 public class Book {
-    private int ISBN10;
-    private int ISBN13;
+    private long ISBN10;
+    private long ISBN13;
     private String bookLibraryCopyID;
     private String bookName;
     private String bookAuthor;
@@ -12,16 +12,16 @@ public class Book {
     private String bookSubGenre;
 
     // getters and setters
-    public int getISBN10() {
+    public long getISBN10() {
         return ISBN10;
     }
-    public void setISBN10(int iSBN10) {
+    public void setISBN10(long iSBN10) {
         ISBN10 = iSBN10;
     }
-    public int getISBN13() {
+    public long getISBN13() {
         return ISBN13;
     }
-    public void setISBN13(int iSBN13) {
+    public void setISBN13(long iSBN13) {
         ISBN13 = iSBN13;
     }
     public String getBookLibraryCopyID() {
