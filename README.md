@@ -7,7 +7,10 @@ $ cd springdemo
 $ mvnw spring-boot:run
 $ curl -v localhost:8080
 ```
-
+## Swagger UI
+```
+http://localhost:8080/swagger-ui.html#/
+```
 ## VSCode Git Cheatsheet
 Git help command
 ```
@@ -35,5 +38,5 @@ git push -u origin master
 ```
 Pull from master branch to local repository
 ```
-git pull origin other-branch
+git pull origin master
 ```
