@@ -7,6 +7,10 @@ $ cd springdemo
 $ mvnw spring-boot:run
 $ curl -v localhost:8080
 ```
+## RequestParam URL format
+```
+http://localhost:8080/user/101?param1=10&param2=20
+```
 ## Swagger UI
 ```
 http://localhost:8080/swagger-ui.html#/

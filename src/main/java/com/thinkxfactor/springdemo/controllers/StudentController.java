@@ -29,12 +29,19 @@ public class StudentController {
         return this.studentMap;
     }
 
+    @GetMapping("/deleteAllStudent") 
+    public String deleteAllStudent(@RequestParam boolean delete) {
+        if (delete) {
+            studentMap.clear();
+        }
+        return "Student database deleted successfuly";
+    }
 
     @PostMapping("/addStudent")
-    public Student addStudent(@RequestBody Student student) {
+    public String addStudent(@RequestBody Student student) {
         student.setStudentID(UUID.randomUUID().toString());
         studentMap.put(student.getStudentID(), student);
-        return student;
+        return "student added successfuly with ID: " + student.getStudentID();
     }
 
 }
