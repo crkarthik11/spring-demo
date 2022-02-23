@@ -39,7 +39,7 @@ public class StudentController {
 
     @PostMapping("/addStudent")
     public String addStudent(@RequestBody Student student) {
-        student.setStudentID(UUID.randomUUID().toString());
+        student.setStudentID('s' + UUID.randomUUID().toString());
         studentMap.put(student.getStudentID(), student);
         return "student added successfuly with ID: " + student.getStudentID();
     }

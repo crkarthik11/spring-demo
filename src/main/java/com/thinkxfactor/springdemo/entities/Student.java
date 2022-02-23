@@ -5,6 +5,7 @@ public class Student {
     private long studentRegistrationNumber;
     private String studentName;
     private int studentAge;
+    private String studentGender;
     private String studentEmailID;
     private long studentContactNumber;
     private String studentAddress;
@@ -36,6 +37,12 @@ public class Student {
     }
     public void setStudentAge(int studentAge) {
         this.studentAge = studentAge;
+    }
+    public String getStudentGender() {
+        return studentGender;
+    }
+    public void setStudentGender(String studentGender) {
+        this.studentGender = studentGender;
     }
     public String getStudentEmailID() {
         return studentEmailID;

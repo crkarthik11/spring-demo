@@ -4,6 +4,7 @@ public class Admin {
     private String adminID;
     private String adminName;
     private int adminAge;
+    private String adminGender;
     private String adminEmailID;
     private long adminContactNumber;
     private String adminAddress;
@@ -22,6 +23,12 @@ public class Admin {
     }
     public int getAdminAge() {
         return adminAge;
+    }
+    public String getAdminGender() {
+        return adminGender;
+    }
+    public void setAdminGender(String adminGender) {
+        this.adminGender = adminGender;
     }
     public void setAdminAge(int adminAge) {
         this.adminAge = adminAge;
