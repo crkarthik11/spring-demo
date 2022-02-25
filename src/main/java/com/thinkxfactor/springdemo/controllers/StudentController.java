@@ -7,7 +7,9 @@ import java.util.UUID;
 import com.thinkxfactor.springdemo.entities.Student;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -47,5 +49,13 @@ public class StudentController {
         studentMap.put(student.getStudentID(), student);
         return "student added successfuly with ID: " + student.getStudentID();
     }
+
+    // update
+    @PutMapping("/updateStudent")
+    public String updateStudent(@RequestBody Student student, @PathVariable String studentID) {
+        studentMap.put(studentID, student);
+        return "Student with ID: " + studentID + " updated successfully";
+    }
+
 
 }

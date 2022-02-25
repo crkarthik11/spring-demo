@@ -7,7 +7,9 @@ import java.util.UUID;
 import com.thinkxfactor.springdemo.entities.Admin;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,5 +47,12 @@ public class AdminController {
         admin.setAdminID('a' + UUID.randomUUID().toString());
         adminMap.put(admin.getAdminID(), admin);
         return "admin added successfuly with ID: " + admin.getAdminID();
+    }
+
+    // update
+    @PutMapping("/updateAdmin")
+    public String updateAdmin(@RequestBody Admin admin, @PathVariable String adminId) {
+        adminMap.put(adminId, admin);
+        return "Admin with ID: " + adminId + " updated successfully";
     }
 }

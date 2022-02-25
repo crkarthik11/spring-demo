@@ -7,7 +7,9 @@ import java.util.UUID;
 import com.thinkxfactor.springdemo.entities.Book;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,5 +47,12 @@ public class BookController {
         book.setBookLibraryCopyID('b' + UUID.randomUUID().toString());
         bookMap.put(book.getBookLibraryCopyID(), book);
         return "book added successfuly with ID: " + book.getBookLibraryCopyID();
+    }
+
+    // update
+    @PutMapping("/updateBook") 
+    public String updateBook(@RequestBody Book book, @PathVariable String bookLibraryCopyID) {
+        bookMap.put(bookLibraryCopyID, book);
+        return "Book with ID: " + bookLibraryCopyID + " updated successfully";
     }
 }
