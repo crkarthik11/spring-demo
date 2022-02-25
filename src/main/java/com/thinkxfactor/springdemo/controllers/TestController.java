@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
     @GetMapping("/")
-    public String error() {
-        return "ERROR from Test Controller";
+    public String tester() {
+        return "Add your test controllers here";
     }
 }
