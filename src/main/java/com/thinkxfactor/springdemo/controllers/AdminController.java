@@ -18,16 +18,19 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdminController {
     Map<String, Admin> adminMap = new HashMap<>();
 
+    // read
     @GetMapping("/getAdminByUUID")
     public Admin getAdminByUUID(@RequestParam String adminID) {
         return adminMap.get(adminID);
     }
 
+    // read
     @GetMapping("getAllAdmin") 
     public Map<String, Admin> getAllAdmin() {
         return this.adminMap;
     } 
 
+    // delete
     @GetMapping("/deleteAllAdmin")
     public String deleteAllStudent(@RequestParam boolean delete) {
         if (delete) {
@@ -36,6 +39,7 @@ public class AdminController {
         return "Admin database deleted successfuly";
     }
 
+    // create
     @PostMapping("/addAdmin") 
     public String addAdmin(@RequestBody Admin admin) {
         admin.setAdminID('a' + UUID.randomUUID().toString());

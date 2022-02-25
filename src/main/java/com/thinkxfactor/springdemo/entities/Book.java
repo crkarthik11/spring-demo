@@ -1,8 +1,10 @@
 package com.thinkxfactor.springdemo.entities;
 
+import java.net.URL;
+
 public class Book {
-    private long ISBN10;
     private long ISBN13;
+    private URL bookImageURL;
     private String bookLibraryCopyID;
     private String bookName;
     private String bookAuthor;
@@ -11,18 +13,18 @@ public class Book {
     private String bookGenre;
     private String bookSubGenre;
 
-    // getters and setters
-    public long getISBN10() {
-        return ISBN10;
-    }
-    public void setISBN10(long iSBN10) {
-        ISBN10 = iSBN10;
-    }
+    
     public long getISBN13() {
         return ISBN13;
     }
     public void setISBN13(long iSBN13) {
         ISBN13 = iSBN13;
+    }
+    public URL getBookImageURL() {
+        return bookImageURL;
+    }
+    public void setBookImageURL(URL bookImageURL) {
+        this.bookImageURL = bookImageURL;
     }
     public String getBookLibraryCopyID() {
         return bookLibraryCopyID;

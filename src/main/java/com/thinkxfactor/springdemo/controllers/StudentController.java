@@ -19,16 +19,19 @@ public class StudentController {
 
     private Map<String, Student> studentMap = new HashMap<>();
 
+    // read
     @GetMapping("/getStudentByUUID")
     public Student getStudentByUUID(@RequestParam String studentID) {
         return studentMap.get(studentID);
     }
 
+    // read
     @GetMapping("/getAllStudent")
     public Map<String, Student> getAllStudent() {
         return this.studentMap;
     }
 
+    // delete
     @GetMapping("/deleteAllStudent") 
     public String deleteAllStudent(@RequestParam boolean delete) {
         if (delete) {
@@ -37,6 +40,7 @@ public class StudentController {
         return "Student database deleted successfuly";
     }
 
+    // create
     @PostMapping("/addStudent")
     public String addStudent(@RequestBody Student student) {
         student.setStudentID('s' + UUID.randomUUID().toString());
