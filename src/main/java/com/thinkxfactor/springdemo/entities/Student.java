@@ -1,30 +1,42 @@
 package com.thinkxfactor.springdemo.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_student")
 public class Student {
-    private String studentID;
-    private long studentRegistrationNumber;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long studentID;
+
+    @Column(name = "name")
     private String studentName;
+    @Column(name = "age")
     private int studentAge;
+    @Column(name = "gender")
     private String studentGender;
+    @Column(name = "email")
     private String studentEmailID;
+    @Column(name = "contact")
     private long studentContactNumber;
+    @Column(name = "address")
     private String studentAddress;
+    @Column(name = "dept")
     private String studentDepartment;
+    @Column(name = "year")
     private int studentYear;
-    private int studentSemester;
-    private String studentLibraryCardNumber;
     
-    public String getStudentID() {
+    public long getStudentID() {
         return studentID;
     }
-    public void setStudentID(String studentID) {
+    public void setStudentID(long studentID) {
         this.studentID = studentID;
-    }
-    public long getStudentRegistrationNumber() {
-        return studentRegistrationNumber;
-    }
-    public void setStudentRegistrationNumber(long studentRegistrationNumber) {
-        this.studentRegistrationNumber = studentRegistrationNumber;
     }
     public String getStudentName() {
         return studentName;
@@ -74,17 +86,4 @@ public class Student {
     public void setStudentYear(int studentYear) {
         this.studentYear = studentYear;
     }
-    public int getStudentSemester() {
-        return studentSemester;
-    }
-    public void setStudentSemester(int studentSemester) {
-        this.studentSemester = studentSemester;
-    }
-    public String getStudentLibraryCardNumber() {
-        return studentLibraryCardNumber;
-    }
-    public void setStudentLibraryCardNumber(String studentLibraryCardNumber) {
-        this.studentLibraryCardNumber = studentLibraryCardNumber;
-    }
-    
 }

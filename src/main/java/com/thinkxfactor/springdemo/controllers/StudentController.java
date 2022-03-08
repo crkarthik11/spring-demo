@@ -1,11 +1,12 @@
 package com.thinkxfactor.springdemo.controllers;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.List;
 
 import com.thinkxfactor.springdemo.entities.Student;
+import com.thinkxfactor.springdemo.repository.StudentRepository;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,46 +16,67 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
 
-    private Map<String, Student> studentMap = new HashMap<>();
+    @Autowired
+    private StudentRepository studentRepository;
 
     // read
     @GetMapping("/getStudentByUUID")
-    public Student getStudentByUUID(@RequestParam String studentID) {
-        return studentMap.get(studentID);
+    public Object getStudentByUUID(@RequestParam Long studentID) {
+        if(studentRepository.findById(studentID)==null){
+            return "OOPS!! Student not found";
+        }
+        return studentRepository.findById(studentID);
     }
 
-    // read
+    // readAll
     @GetMapping("/getAllStudent")
-    public Map<String, Student> getAllStudent() {
-        return this.studentMap;
+    public List<Student> getAllStudent() {
+        return studentRepository.findAll();
+    }
+
+    // deleteAll
+    @DeleteMapping("/deleteAllStudent/{delete}") 
+    public String deleteAllStudent(@PathVariable boolean delete) {
+        if (delete) {
+            studentRepository.deleteAll();
+        }
+        return "Student database deleted successfuly!";
     }
 
     // delete
-    @GetMapping("/deleteAllStudent") 
-    public String deleteAllStudent(@RequestParam boolean delete) {
-        if (delete) {
-            studentMap.clear();
+    @DeleteMapping("/deleteStudent")
+    public String deleteStudent(@RequestParam Long studentID){
+        if(studentRepository.findById(studentID)==null){
+            return "OOPS!! Student not found";
         }
-        return "Student database deleted successfuly";
+        studentRepository.deleteById(studentID);
+        return studentID+"deleted successfuly!!";
     }
 
     // create
     @PostMapping("/addStudent")
-    public String addStudent(@RequestBody Student student) {
-        student.setStudentID('s' + UUID.randomUUID().toString());
-        studentMap.put(student.getStudentID(), student);
-        return "student added successfuly with ID: " + student.getStudentID();
+    public Object addStudent(@RequestBody Student student) {
+
+        System.out.println("Student object received!!");
+        Student persistantStudent=studentRepository.save(student);
+        System.out.println("Student object saved!!");
+        return persistantStudent;
     }
 
     // update
     @PutMapping("/updateStudent")
-    public String updateStudent(@RequestBody Student student, @PathVariable String studentID) {
-        studentMap.put(studentID, student);
-        return "Student with ID: " + studentID + " updated successfully";
+    public Object updateStudent(@RequestBody Student student) {
+        if(student.getStudentID()==0){
+            return "OOPS!! Student not found";
+        }
+        Student updatedStudent=studentRepository.save(student);
+        return updatedStudent;
     }
 
 
