@@ -2,16 +2,35 @@ package com.thinkxfactor.springdemo.entities;
 
 import java.net.URL;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_book")
 public class Book {
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long bookID;
+    
+    @Column(name = "isbn13")
     private long ISBN13;
+    @Column(name = "img_url")
     private URL bookImageURL;
-    private String bookLibraryCopyID;
+    @Column(name = "name")
     private String bookName;
+    @Column(name = "author")
     private String bookAuthor;
+    @Column(name = "publisher")
     private String bookPublisher;
+    @Column(name = "price")
     private String bookPrice;
+    @Column(name = "genre")
     private String bookGenre;
-    private String bookSubGenre;
 
     
     public long getISBN13() {
@@ -26,11 +45,11 @@ public class Book {
     public void setBookImageURL(URL bookImageURL) {
         this.bookImageURL = bookImageURL;
     }
-    public String getBookLibraryCopyID() {
-        return bookLibraryCopyID;
+    public long getBookID() {
+        return bookID;
     }
-    public void setBookLibraryCopyID(String bookLibraryCopyID) {
-        this.bookLibraryCopyID = bookLibraryCopyID;
+    public void setBookID(long bookID) {
+        this.bookID = bookID;
     }
     public String getBookName() {
         return bookName;
@@ -62,12 +81,5 @@ public class Book {
     public void setBookGenre(String bookGenre) {
         this.bookGenre = bookGenre;
     }
-    public String getBookSubGenre() {
-        return bookSubGenre;
-    }
-    public void setBookSubGenre(String bookSubGenre) {
-        this.bookSubGenre = bookSubGenre;
-    }
-
     
 }

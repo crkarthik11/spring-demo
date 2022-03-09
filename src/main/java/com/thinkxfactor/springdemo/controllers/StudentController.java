@@ -29,7 +29,7 @@ public class StudentController {
     @GetMapping("/getStudentByUUID")
     public Object getStudentByUUID(@RequestParam Long studentID) {
         if(studentRepository.findById(studentID)==null){
-            return "OOPS!! Student not found";
+            return "Student not found!!";
         }
         return studentRepository.findById(studentID);
     }
@@ -53,10 +53,10 @@ public class StudentController {
     @DeleteMapping("/deleteStudent")
     public String deleteStudent(@RequestParam Long studentID){
         if(studentRepository.findById(studentID)==null){
-            return "OOPS!! Student not found";
+            return "Student not found!!";
         }
         studentRepository.deleteById(studentID);
-        return studentID+"deleted successfuly!!";
+        return studentID+" deleted successfuly!!";
     }
 
     // create
@@ -73,7 +73,7 @@ public class StudentController {
     @PutMapping("/updateStudent")
     public Object updateStudent(@RequestBody Student student) {
         if(student.getStudentID()==0){
-            return "OOPS!! Student not found";
+            return "Student not found!!";
         }
         Student updatedStudent=studentRepository.save(student);
         return updatedStudent;

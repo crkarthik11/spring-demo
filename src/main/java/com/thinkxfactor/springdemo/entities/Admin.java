@@ -1,18 +1,38 @@
 package com.thinkxfactor.springdemo.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "tbl_admin")
 public class Admin {
-    private String adminID;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long adminID;
+
+
+    @Column(name = "name")
     private String adminName;
+    @Column(name = "age")
     private int adminAge;
+    @Column(name = "gender")
     private String adminGender;
+    @Column(name = "email")
     private String adminEmailID;
+    @Column(name = "contact")
     private long adminContactNumber;
+    @Column(name = "address")
     private String adminAddress;
     
-    public String getAdminID() {
+    public long getAdminID() {
         return adminID;
     }
-    public void setAdminID(String adminID) {
+    public void setAdminID(long adminID) {
         this.adminID = adminID;
     }
     public String getAdminName() {

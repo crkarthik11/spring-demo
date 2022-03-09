@@ -24,7 +24,7 @@ public class Student {
     @Column(name = "email")
     private String studentEmailID;
     @Column(name = "contact")
-    private long studentContactNumber;
+    private String studentContactNumber;
     @Column(name = "address")
     private String studentAddress;
     @Column(name = "dept")
@@ -62,10 +62,10 @@ public class Student {
     public void setStudentEmailID(String studentEmailID) {
         this.studentEmailID = studentEmailID;
     }
-    public long getStudentContactNumber() {
+    public String getStudentContactNumber() {
         return studentContactNumber;
     }
-    public void setStudentContactNumber(long studentContactNumber) {
+    public void setStudentContactNumber(String studentContactNumber) {
         this.studentContactNumber = studentContactNumber;
     }
     public String getStudentAddress() {
