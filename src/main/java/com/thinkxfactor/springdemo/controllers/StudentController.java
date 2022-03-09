@@ -26,8 +26,8 @@ public class StudentController {
     private StudentRepository studentRepository;
 
     // read
-    @GetMapping("/getStudentByUUID")
-    public Object getStudentByUUID(@RequestParam Long studentID) {
+    @GetMapping("/getStudentByID")
+    public Object getStudentByID(@RequestParam Long studentID) {
         if(studentRepository.findById(studentID)==null){
             return "Student not found!!";
         }

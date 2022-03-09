@@ -27,8 +27,8 @@ public class AdminController {
     private AdminRepository adminRepository;
 
     // read
-    @GetMapping("/getAdminByUUID")
-    public Object getAdminByUUID(@RequestParam Long adminID) {
+    @GetMapping("/getAdminByID")
+    public Object getAdminByID(@RequestParam Long adminID) {
         if(adminRepository.findById(adminID)==null){
             return "Admin not found!!";
         }
