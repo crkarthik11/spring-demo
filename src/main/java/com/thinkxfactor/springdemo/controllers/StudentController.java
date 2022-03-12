@@ -1,10 +1,13 @@
 package com.thinkxfactor.springdemo.controllers;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
 
 import com.thinkxfactor.springdemo.entities.Student;
 import com.thinkxfactor.springdemo.repository.StudentRepository;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,20 +19,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-
-
 @RestController
 @RequestMapping("/student")
 public class StudentController {
+
+    private Logger log = Logger.getLogger("StudentController");
 
     @Autowired
     private StudentRepository studentRepository;
 
     // read
     @GetMapping("/getStudentByID")
-    public Object getStudentByID(@RequestParam Long studentID) {
-        if(studentRepository.findById(studentID)==null){
-            return "Student not found!!";
+    public Optional<Student> getStudentByID(@RequestParam Long studentID) {
+        if (!studentRepository.existsById(studentID)) {
+            log.warning("Object dosen't exist");
         }
         return studentRepository.findById(studentID);
     }
@@ -41,43 +44,51 @@ public class StudentController {
     }
 
     // deleteAll
-    @DeleteMapping("/deleteAllStudent/{delete}") 
-    public String deleteAllStudent(@PathVariable boolean delete) {
+    @DeleteMapping("/deleteAllStudent/{delete}")
+    public Optional<Student> deleteAllStudent(@PathVariable boolean delete) {
+        log.warning("Database will be deleted");
         if (delete) {
             studentRepository.deleteAll();
+            log.info("Database deleted successfully");
+        } else {
+            log.warning("Operation abandoned");
         }
-        return "Student database deleted successfuly!";
+        return null;
     }
 
     // delete
     @DeleteMapping("/deleteStudent")
-    public String deleteStudent(@RequestParam Long studentID){
-        if(studentRepository.findById(studentID)==null){
-            return "Student not found!!";
+    public Optional<Student> deleteStudent(@RequestParam Long studentID) {
+        log.warning("Object will be deleted");
+        if (!studentRepository.existsById(studentID)) {
+            log.warning("Object not found");
         }
         studentRepository.deleteById(studentID);
-        return studentID+" deleted successfuly!!";
+        log.info(studentID + " Deleted successfully");
+        return null;
     }
 
     // create
     @PostMapping("/addStudent")
-    public Object addStudent(@RequestBody Student student) {
+    public Student addStudent(@RequestBody Student student) {
 
-        System.out.println("Student object received!!");
-        Student persistantStudent=studentRepository.save(student);
-        System.out.println("Student object saved!!");
-        return persistantStudent;
+        log.info("Object recieved");
+        Student savedStudent = studentRepository.save(student);
+        log.info(savedStudent.getStudentID() + " Saved");
+        return savedStudent;
     }
 
     // update
     @PutMapping("/updateStudent")
-    public Object updateStudent(@RequestBody Student student) {
-        if(student.getStudentID()==0){
-            return "Student not found!!";
+    public Student updateStudent(@RequestBody Student student) {
+        if (!studentRepository.existsById(student.getStudentID())) {
+            log.warning("Object dosen't exist");
+            return null;
         }
-        Student updatedStudent=studentRepository.save(student);
+        log.info("Object recieved");
+        Student updatedStudent = studentRepository.save(student);
+        log.info(updatedStudent.getStudentID() + " Saved");
         return updatedStudent;
     }
-
 
 }

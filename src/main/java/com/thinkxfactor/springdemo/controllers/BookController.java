@@ -29,20 +29,20 @@ public class BookController {
     // read
     @GetMapping("/getBookByID")
     public Object getBookByID(@RequestParam Long bookID) {
-        if(bookRepository.findById(bookID)==null){
+        if (bookRepository.findById(bookID) == null) {
             return "Book not found!!";
         }
         return bookRepository.findById(bookID);
     }
 
     // readAll
-    @GetMapping("/getAllBook") 
+    @GetMapping("/getAllBook")
     public List<Book> getAllBook() {
         return bookRepository.findAll();
-    } 
+    }
 
     // deleteAll
-    @DeleteMapping("/deleteAllBook/{delete}") 
+    @DeleteMapping("/deleteAllBook/{delete}")
     public String deleteAllBook(@PathVariable boolean delete) {
         if (delete) {
             bookRepository.deleteAll();
@@ -50,34 +50,32 @@ public class BookController {
         return "Book database deleted successfuly!";
     }
 
-    
-
     // delete
     @DeleteMapping("deleteBook")
-    public String deleteBook(@RequestParam Long bookID){
-        if(bookRepository.findById(bookID)==null){
+    public String deleteBook(@RequestParam Long bookID) {
+        if (bookRepository.findById(bookID) == null) {
             return "Book not found!!";
         }
         bookRepository.deleteById(bookID);
-        return bookID+" deleted successfuly!!";
+        return bookID + " deleted successfuly!!";
     }
 
     // create
-    @PostMapping("/addBook") 
+    @PostMapping("/addBook")
     public Object addBook(@RequestBody Book book) {
         System.out.println("Book object received!!");
-        Book persistantBook=bookRepository.save(book);
+        Book persistantBook = bookRepository.save(book);
         System.out.println("Book object saved!!");
         return persistantBook;
     }
 
     // update
-    @PutMapping("/updateBook") 
+    @PutMapping("/updateBook")
     public Object updateBook(@RequestBody Book book) {
-        if(book.getBookID()==0){
+        if (book.getBookID() == 0) {
             return "Book not found!!";
         }
-        Book updatedBook=bookRepository.save(book);
+        Book updatedBook = bookRepository.save(book);
         return updatedBook;
     }
 }

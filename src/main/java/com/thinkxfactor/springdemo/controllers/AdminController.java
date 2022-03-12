@@ -29,20 +29,20 @@ public class AdminController {
     // read
     @GetMapping("/getAdminByID")
     public Object getAdminByID(@RequestParam Long adminID) {
-        if(adminRepository.findById(adminID)==null){
+        if (!adminRepository.existsById(adminID)) {
             return "Admin not found!!";
         }
         return adminRepository.findById(adminID);
     }
 
     // readAll
-    @GetMapping("getAllAdmin") 
+    @GetMapping("getAllAdmin")
     public List<Admin> getAllAdmin() {
         return adminRepository.findAll();
-    } 
+    }
 
     // deleteAll
-    @DeleteMapping("/deleteAllAdmin/{delete}") 
+    @DeleteMapping("/deleteAllAdmin/{delete}")
     public String deleteAllAdmin(@PathVariable boolean delete) {
         if (delete) {
             adminRepository.deleteAll();
@@ -53,18 +53,18 @@ public class AdminController {
     // delete
     @DeleteMapping("/deleteAdmin")
     public String deleteAdmin(@RequestParam Long adminID) {
-        if(adminRepository.findById(adminID)==null){
+        if (adminRepository.findById(adminID) == null) {
             return "Student not found!!";
         }
         adminRepository.deleteById(adminID);
-        return adminID+" deleted successfuly!!";
+        return adminID + " deleted successfuly!!";
     }
 
     // create
-    @PostMapping("/addAdmin") 
+    @PostMapping("/addAdmin")
     public Object addAdmin(@RequestBody Admin admin) {
         System.out.println("Admin object received!!");
-        Admin persistantAdmin=adminRepository.save(admin);
+        Admin persistantAdmin = adminRepository.save(admin);
         System.out.println("Admin object saved!!");
         return persistantAdmin;
     }
@@ -72,10 +72,10 @@ public class AdminController {
     // update
     @PutMapping("/updateAdmin")
     public Object updateAdmin(@RequestBody Admin admin) {
-        if (admin.getAdminID()==0) {
+        if (admin.getAdminID() == 0) {
             return "Admin not found!!";
         }
-        Admin updatedAdmin=adminRepository.save(admin);
+        Admin updatedAdmin = adminRepository.save(admin);
         return updatedAdmin;
     }
 }
