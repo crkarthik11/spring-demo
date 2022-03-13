@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+// import javax.persistence.UniqueConstraint;
 
 @Entity
 @Table(name = "tbl_admin")
@@ -16,19 +17,35 @@ public class Admin {
     private long adminID;
 
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String adminName;
     @Column(name = "age")
     private int adminAge;
     @Column(name = "gender")
     private String adminGender;
-    @Column(name = "email")
+    @Column(name = "email", unique = true, nullable = false)
     private String adminEmailID;
-    @Column(name = "contact")
+    @Column(name = "contact", unique = true, nullable = false)
     private long adminContactNumber;
     @Column(name = "address")
     private String adminAddress;
+    @Column(name = "username", unique = true, nullable = false)
+    private String adminUsername;
+    @Column(name = "password", nullable = false)
+    private String adminPassword;
     
+    public String getAdminUsername() {
+        return adminUsername;
+    }
+    public void setAdminUsername(String adminUsername) {
+        this.adminUsername = adminUsername;
+    }
+    public String getAdminPassword() {
+        return adminPassword;
+    }
+    public void setAdminPassword(String adminPassword) {
+        this.adminPassword = adminPassword;
+    }
     public long getAdminID() {
         return adminID;
     }

@@ -812,3 +812,6 @@ Caused by: org.h2.jdbc.JdbcSQLInvalidAuthorizationSpecException: Wrong user name
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:461)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
 	... 55 more
+2022-03-13 21:07:23 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TBL_STUDENT TBL_ADMIN TBL_STUDENT[*]"; SQL statement:
+SELECT * FROM TBL_STUDENT TBL_ADMIN TBL_STUDENT [42000-200]

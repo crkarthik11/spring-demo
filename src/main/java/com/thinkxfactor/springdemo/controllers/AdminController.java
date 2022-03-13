@@ -1,13 +1,16 @@
 package com.thinkxfactor.springdemo.controllers;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+// import java.util.Map;
+import java.util.Optional;
+// import java.util.UUID;
 
 import com.thinkxfactor.springdemo.entities.Admin;
 import com.thinkxfactor.springdemo.repository.AdminRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +29,13 @@ public class AdminController {
     @Autowired
     private AdminRepository adminRepository;
 
+    private Logger log = LoggerFactory.getLogger(this.getClass()); 
+
     // read
     @GetMapping("/getAdminByID")
-    public Object getAdminByID(@RequestParam Long adminID) {
+    public Optional<Admin> getAdminByID(@RequestParam Long adminID) {
         if (!adminRepository.existsById(adminID)) {
-            return "Admin not found!!";
+            log.warn("Object doesn't exist");
         }
         return adminRepository.findById(adminID);
     }
@@ -43,39 +48,48 @@ public class AdminController {
 
     // deleteAll
     @DeleteMapping("/deleteAllAdmin/{delete}")
-    public String deleteAllAdmin(@PathVariable boolean delete) {
+    public Optional<Admin> deleteAllAdmin(@PathVariable boolean delete) {
+        log.warn("Database will be deleted");
         if (delete) {
             adminRepository.deleteAll();
+            log.info("Database deleted successfully");
         }
-        return "Student database deleted successfuly!";
+        else {
+            log.warn("Operation abandoned");
+        }
+        return null;
     }
 
     // delete
     @DeleteMapping("/deleteAdmin")
-    public String deleteAdmin(@RequestParam Long adminID) {
-        if (adminRepository.findById(adminID) == null) {
-            return "Student not found!!";
+    public Optional<Admin> deleteAdmin(@RequestParam Long adminID) {
+        if (adminRepository.existsById(adminID)) {
+            log.warn("Object doesn't exist");
         }
         adminRepository.deleteById(adminID);
-        return adminID + " deleted successfuly!!";
+        log.info(adminID + " Deleted successfully");
+        return null;
     }
 
     // create
     @PostMapping("/addAdmin")
-    public Object addAdmin(@RequestBody Admin admin) {
-        System.out.println("Admin object received!!");
-        Admin persistantAdmin = adminRepository.save(admin);
-        System.out.println("Admin object saved!!");
-        return persistantAdmin;
+    public Admin addAdmin(@RequestBody Admin admin) {
+        log.info("Object recieved");
+        Admin savedAdmin = adminRepository.save(admin);
+        log.info(savedAdmin.getAdminID() + " Saved");
+        return savedAdmin;
     }
 
     // update
     @PutMapping("/updateAdmin")
-    public Object updateAdmin(@RequestBody Admin admin) {
-        if (admin.getAdminID() == 0) {
-            return "Admin not found!!";
+    public Admin updateAdmin(@RequestBody Admin admin) {
+        if (!adminRepository.existsById(admin.getAdminID())) {
+            log.warn("Object dosen't exist");
+            return null;
         }
+        log.info("Object recieved");
         Admin updatedAdmin = adminRepository.save(admin);
+        log.info(updatedAdmin.getAdminID() + " Updated");
         return updatedAdmin;
     }
 }

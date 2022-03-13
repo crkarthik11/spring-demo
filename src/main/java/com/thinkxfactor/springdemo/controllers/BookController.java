@@ -1,13 +1,16 @@
 package com.thinkxfactor.springdemo.controllers;
 
-import java.util.HashMap;
+// import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+// import java.util.Map;
+// import java.util.UUID;
+import java.util.Optional;
 
 import com.thinkxfactor.springdemo.entities.Book;
 import com.thinkxfactor.springdemo.repository.BookRepository;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,11 +29,13 @@ public class BookController {
     @Autowired
     private BookRepository bookRepository;
 
+    private Logger log = LoggerFactory.getLogger(this.getClass()); 
+
     // read
     @GetMapping("/getBookByID")
-    public Object getBookByID(@RequestParam Long bookID) {
-        if (bookRepository.findById(bookID) == null) {
-            return "Book not found!!";
+    public Optional<Book> getBookByID(@RequestParam Long bookID) {
+        if (!bookRepository.existsById(bookID)) {
+            log.warn("Object dosen't exist");
         }
         return bookRepository.findById(bookID);
     }
@@ -43,39 +48,49 @@ public class BookController {
 
     // deleteAll
     @DeleteMapping("/deleteAllBook/{delete}")
-    public String deleteAllBook(@PathVariable boolean delete) {
+    public Optional<Book> deleteAllBook(@PathVariable boolean delete) {
+        log.warn("Database will be deleted");
         if (delete) {
             bookRepository.deleteAll();
+            log.info("Database deleted successfully");
         }
-        return "Book database deleted successfuly!";
+        else {
+            log.warn("Operation abandoned");
+        }
+        return null;
     }
 
     // delete
     @DeleteMapping("deleteBook")
-    public String deleteBook(@RequestParam Long bookID) {
-        if (bookRepository.findById(bookID) == null) {
-            return "Book not found!!";
+    public Optional<Book> deleteBook(@RequestParam Long bookID) {
+        log.warn("Object will be deleted");
+        if (!bookRepository.existsById(bookID)) {
+            log.warn("Object not found");
         }
         bookRepository.deleteById(bookID);
-        return bookID + " deleted successfuly!!";
+        log.info(bookID + " Deleted successfully");
+        return null;
     }
 
     // create
     @PostMapping("/addBook")
-    public Object addBook(@RequestBody Book book) {
-        System.out.println("Book object received!!");
-        Book persistantBook = bookRepository.save(book);
-        System.out.println("Book object saved!!");
-        return persistantBook;
+    public Book addBook(@RequestBody Book book) {
+        log.info("Object recieved");
+        Book savedBook = bookRepository.save(book);
+        log.info(savedBook.getBookID() + " Saved");
+        return savedBook;
     }
 
     // update
     @PutMapping("/updateBook")
-    public Object updateBook(@RequestBody Book book) {
-        if (book.getBookID() == 0) {
-            return "Book not found!!";
+    public Book updateBook(@RequestBody Book book) {
+        if (!bookRepository.existsById(book.getBookID())) {
+            log.warn("Object dosen't exist");
+            return null;
         }
+        log.info("Object recieved");
         Book updatedBook = bookRepository.save(book);
+        log.info(updatedBook.getBookID() + " Updated");
         return updatedBook;
     }
 }
