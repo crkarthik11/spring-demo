@@ -1,5 +1,6 @@
 package com.thinkxfactor.springdemo.controllers;
 
+import java.lang.reflect.Method;
 // import java.util.HashMap;
 import java.util.List;
 // import java.util.Map;
@@ -91,5 +92,23 @@ public class AdminController {
         Admin updatedAdmin = adminRepository.save(admin);
         log.info(updatedAdmin.getAdminID() + " Updated");
         return updatedAdmin;
+    }
+
+    // find by admin name 
+    @GetMapping("/findByName")
+    public List<Optional<Admin>> findByName(@RequestParam String name) {
+        return adminRepository.findByAdminName(name);
+    }
+
+    // find by age between
+    @GetMapping("/findAdminByAgeBetween")
+    public List<Optional<Admin>> findAdminByAgeBetween(@RequestParam int startAge, @RequestParam int endAge) {
+        if (startAge <= endAge) {
+            return adminRepository.findByAgeBetween(startAge, endAge);
+        }
+        else {
+            log.warn("Lower bound should be less than or equal to upper bound");
+            return null;
+        }
     }
 }

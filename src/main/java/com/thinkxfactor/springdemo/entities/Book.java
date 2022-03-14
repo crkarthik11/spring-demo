@@ -17,11 +17,11 @@ public class Book {
     @Column(name = "id")
     private long bookID;
     
-    @Column(name = "isbn13")
+    @Column(name = "isbn13", nullable = false)
     private long ISBN13;
     @Column(name = "img_url")
     private URL bookImageURL;
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String bookName;
     @Column(name = "author")
     private String bookAuthor;

@@ -15,15 +15,15 @@ public class Student {
     @Column(name = "id")
     private long studentID;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String studentName;
     @Column(name = "age")
     private int studentAge;
     @Column(name = "gender")
     private String studentGender;
-    @Column(name = "email")
+    @Column(name = "email", nullable = false, unique = true)
     private String studentEmailID;
-    @Column(name = "contact")
+    @Column(name = "contact", nullable = false, unique = true)
     private String studentContactNumber;
     @Column(name = "address")
     private String studentAddress;
@@ -31,7 +31,23 @@ public class Student {
     private String studentDepartment;
     @Column(name = "year")
     private int studentYear;
+    @Column(name = "username", nullable = false, unique = true)
+    private String studentUsername;
+    @Column(name = "password", nullable = false)    
+    private String studentPassword;
     
+    public String getStudentUsername() {
+        return studentUsername;
+    }
+    public void setStudentUsername(String studentUsername) {
+        this.studentUsername = studentUsername;
+    }
+    public String getStudentPassword() {
+        return studentPassword;
+    }
+    public void setStudentPassword(String studentPassword) {
+        this.studentPassword = studentPassword;
+    }
     public long getStudentID() {
         return studentID;
     }
