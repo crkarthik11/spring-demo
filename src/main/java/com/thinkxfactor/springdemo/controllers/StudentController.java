@@ -94,4 +94,9 @@ public class StudentController {
         return updatedStudent;
     }
 
+    // get by dept
+    @GetMapping("/getByDepartment")
+    public Optional<List<Student>> getByDepartment(@RequestParam String dept) {
+        return studentRepository.getStudentByDepartment(dept);
+    }
 }

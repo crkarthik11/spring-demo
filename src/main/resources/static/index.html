@@ -11,11 +11,11 @@
 </head>
 
 <body>
-    <header id="home">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <header id="home" class="site-header">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(0,0,0,0.8);">
             <div class="container-fluid">
                 <a class="navbar-brand" href="index.html">
-                    <img class="bi me-2" src="https://img.icons8.com/glyph-neue/344/book.png" alt="" width="5%" height="5%">
+                    <img class="bi me-2" src="data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZpZXdCb3g9IjAgMCAxNzIgMTcyIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0iYnV0dCIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBzdHJva2UtZGFzaGFycmF5PSIiIHN0cm9rZS1kYXNob2Zmc2V0PSIwIiBmb250LWZhbWlseT0ibm9uZSIgZm9udC13ZWlnaHQ9Im5vbmUiIGZvbnQtc2l6ZT0ibm9uZSIgdGV4dC1hbmNob3I9Im5vbmUiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMCwxNzJ2LTE3MmgxNzJ2MTcyeiIgZmlsbD0iIzIxMjUyOSI+PC9wYXRoPjxnIGZpbGw9IiNmZmZmZmYiPjxwYXRoIGQ9Ik0xMzkuNzUsMTI2LjMxMjV2LTEwNC44MTI1aC04MC42MjV2MjEuNWwtMTAuNzUsMi42ODc1di0yNC4xODc1aC03LjUxMTU2Yy02LjI0MDM4LDAgLTExLjMwMDk0LDQuOTEyNzUgLTExLjMwMDk0LDEwLjk3MzA2djEwOS43Mzg2OWMwLDYuMDYzIDUuMDYwNTYsMTAuOTc1NzUgMTEuMzAwOTQsMTAuOTc1NzVoOTguODg2NTZ2LTEwLjc1bC05OS40Mzc1LC0yLjY4NzV2LTUuMzc1YzAsMCA4NiwwIDk5LjQzNzUsLTguMDYyNXpNMTAyLjEyNSw4My4zMTI1aC0zNC45Mzc1di04LjA2MjVoMzQuOTM3NXpNNTYuNDM3NSw1OS4xMjVsNTYuNDM3NSwtMi4wMTU2MnY4LjA2MjVsLTU2LjQzNzUsMi4wMTU2M3oiPjwvcGF0aD48L2c+PC9nPjwvc3ZnPg==" alt="" width="5%" height="5%">
                     Library Management System</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -28,10 +28,10 @@
                             <a class="nav-link active" aria-current="page" href="#home">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#objective">Our Objective</a>
+                            <a class="nav-link" href="#features">Features</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About Us</a>
+                            <a class="nav-link" href="#about">About</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
@@ -50,9 +50,9 @@
     </header>
 
     <main>
-        <section class="py-5 text-center bg-secondary">
+        <section class="py-5 text-center" style="background-color: #ADB5BD;">
             <div class="row py-lg-5">
-                <div class="col-lg-10 col-md-8 mx-auto px-5">
+                <div class="col-lg-10 col-md-8 mx-auto px-5 mt-5">
                     <h1 class="display-3">
                         <b>Library Management System</b><br>
                         <small class="text-muted-dark">With Spring-Boot</small>
@@ -73,58 +73,61 @@
             </div>
         </section>
 
-        <section class="py-5 my-5 text-center" id="objective">
-            <div class="container marketing py-5">
+        <section class="py-5 my-5 text-center" id="features">
+            <div class="container marketing py-5 mt-5">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h6 class="display-6">Heading</h6>
+                    <div class="col-lg-3 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bolt" width="100" height="100" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <polyline points="13 3 13 10 19 10 11 21 11 14 5 14 13 3" />
+                          </svg>
+                        <h6 class="display-6">Fast</h6>
                         <p>
                             Some representative placeholder content for the three columns of text below the carousel.
                             This is the first column.
                         </p>
                         <p>
-                            <a class="btn btn-secondary" href="#">View details</a>
+                            <a class="btn btn-outline-secondary" href="#">View details</a>
                         </p>
                     </div>
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h6 class="display-6">Heading</h6>
+                    <div class="col-lg-3 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shield-lock" width="100" height="100" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M12 3a12 12 0 0 0 8.5 3a12 12 0 0 1 -8.5 15a12 12 0 0 1 -8.5 -15a12 12 0 0 0 8.5 -3" />
+                            <circle cx="12" cy="11" r="1" />
+                            <line x1="12" y1="12" x2="12" y2="14.5" />
+                          </svg>
+                        <!-- <svg width="140" height="140">
+                            <defs>
+                              <pattern id="image" patternUnits="userSpaceOnUse" height="100%" width="100%">
+                                <image x="-40" y="-35" height="150%" width="150%" xlink:href="https://www.pikpng.com/pngl/m/74-748128_network-security-icon-internet-security-icon-png-clipart.png"></image>
+                              </pattern>
+                            </defs>
+                            <circle id='top' cx="70" cy="70" r="70" fill="url(#image)"/>
+                          </svg> -->
+                        <h6 class="display-6">Secure</h6>
                         <p>
                             Some representative placeholder content for the three columns of text below the carousel.
                             This is the first column.
                         </p>
                         <p>
-                            <a class="btn btn-secondary" href="#">View details</a>
+                            <a class="btn btn-outline-secondary" href="#">View details</a>
                         </p>
                     </div>
-                    <div class="col-lg-4">
-                        <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                            xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140"
-                            preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#777"
-                                dy=".3em">140x140</text>
-                        </svg>
-                        <h6 class="display-6">Heading</h6>
+                    <div class="col-lg-3 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-bulb" width="100" height="100" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M3 12h1m8 -9v1m8 8h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7" />
+                            <path d="M9 16a5 5 0 1 1 6 0a3.5 3.5 0 0 0 -1 3a2 2 0 0 1 -4 0a3.5 3.5 0 0 0 -1 -3" />
+                            <line x1="9.7" y1="17" x2="14.3" y2="17" />
+                          </svg>
+                        <h6 class="display-6">Intelligent</h6>
                         <p>
                             Some representative placeholder content for the three columns of text below the carousel.
                             This is the first column.
                         </p>
                         <p>
-                            <a class="btn btn-secondary" href="#">View details</a>
+                            <a class="btn btn-outline-secondary" href="#">View details</a>
                         </p>
                     </div>
                 </div>
@@ -132,51 +135,65 @@
         </section>
     </main>
 
-    <footer class="container py-5" id="about">
-        <div class="row">
+    <footer class="bd-footer py-5 mt-5 bg-light" id="about">
+        <div class="container py-5">
             
-            <div class="col-12 col-md">
-                <img class="mb-2" src="https://img.icons8.com/glyph-neue/344/book.png" alt="" width="50" height="50">
-                <small class="d-block mb-3 text-muted">© 2021-2022</small>
+          <div class="row">
+            <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/" aria-label="Bootstrap">
+                <img src="https://img.icons8.com/glyph-neue/344/book.png" alt="" width="50" height="50">
+            <div class="col-lg-3 mb-3">
+              
+                <span class="fs-5">Library Management System</span>
+              </a>
+              <ul class="list-unstyled small text-muted">
+                <li class="mb-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum facilis non beatae modi.</li>
+                <li class="mb-2">Code licensed <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>.</li>
+                <li class="mb-2">Release v1.0.0</li>
+              </ul>
             </div>
-            <div class="col-6 col-md">
-                <h5>Features</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Cool stuff</a></li>
-                    <li><a class="link-secondary" href="#">Random feature</a></li>
-                    <li><a class="link-secondary" href="#">Team feature</a></li>
-                    <li><a class="link-secondary" href="#">Stuff for developers</a></li>
-                </ul>
+            <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+              <h5>Links</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="/">Home</a></li>
+                <li class="mb-2"><a href="/docs/5.0/">Docs</a></li>
+                <li class="mb-2"><a href="/docs/5.0/examples/">Examples</a></li>
+                <li class="mb-2"><a href="https://themes.getbootstrap.com/">Themes</a></li>
+                <li class="mb-2"><a href="https://blog.getbootstrap.com/">Blog</a></li>
+              </ul>
             </div>
-            <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Resource name</a></li>
-                    <li><a class="link-secondary" href="#">Resource</a></li>
-                    <li><a class="link-secondary" href="#">Another resource</a></li>
-                    <li><a class="link-secondary" href="#">Final resource</a></li>
-                </ul>
+            <div class="col-6 col-lg-2 mb-3">
+              <h5>Guides</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="/docs/5.0/getting-started/">Getting started</a></li>
+                <li class="mb-2"><a href="/docs/5.0/examples/starter-template/">Starter template</a></li>
+                <li class="mb-2"><a href="/docs/5.0/getting-started/webpack/">Webpack</a></li>
+                <li class="mb-2"><a href="/docs/5.0/getting-started/parcel/">Parcel</a></li>
+              </ul>
             </div>
-            <div class="col-6 col-md">
-                <h5>Resources</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Business</a></li>
-                    <li><a class="link-secondary" href="#">Education</a></li>
-                    <li><a class="link-secondary" href="#">Government</a></li>
-                    <li><a class="link-secondary" href="#">Gaming</a></li>
-                </ul>
+            <div class="col-6 col-lg-2 mb-3">
+              <h5>Projects</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="https://github.com/twbs/bootstrap">Bootstrap 5</a></li>
+                <li class="mb-2"><a href="https://github.com/twbs/bootstrap/tree/v4-dev">Bootstrap 4</a></li>
+                <li class="mb-2"><a href="https://github.com/twbs/icons">Icons</a></li>
+                <li class="mb-2"><a href="https://github.com/twbs/rfs">RFS</a></li>
+                <li class="mb-2"><a href="https://github.com/twbs/bootstrap-npm-starter">npm starter</a></li>
+              </ul>
             </div>
-            <div class="col-6 col-md">
-                <h5>About</h5>
-                <ul class="list-unstyled text-small">
-                    <li><a class="link-secondary" href="#">Team</a></li>
-                    <li><a class="link-secondary" href="#">Locations</a></li>
-                    <li><a class="link-secondary" href="#">Privacy</a></li>
-                    <li><a class="link-secondary" href="#">Terms</a></li>
-                </ul>
+            <div class="col-6 col-lg-2 mb-3">
+              <h5>Community</h5>
+              <ul class="list-unstyled">
+                <li class="mb-2"><a href="https://github.com/twbs/bootstrap/issues">Issues</a></li>
+                <li class="mb-2"><a href="https://github.com/twbs/bootstrap/discussions">Discussions</a></li>
+                <li class="mb-2"><a href="https://github.com/sponsors/twbs">Corporate sponsors</a></li>
+                <li class="mb-2"><a href="https://opencollective.com/bootstrap">Open Collective</a></li>
+                <li class="mb-2"><a href="https://bootstrap-slack.herokuapp.com/">Slack</a></li>
+              </ul>
             </div>
+          </div>
         </div>
-    </footer>
+      </footer>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
@@ -184,3 +201,4 @@
 </body>
 
 </html>
+
