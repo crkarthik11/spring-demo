@@ -44,3 +44,26 @@ Pull from master branch to local repository
 ```
 git pull origin master
 ```
+# Spring Data JPA Query Methods Example
+### JPA Query
+```java
+public interface StudentRepository extends JpaRepository<Student, Long> {
+
+    @Query("SELECT student FROM Student student WHERE student.studentDepartment = : DEPT")
+    Optional<List<Student>> getStudentByDepartment(String DEPT);
+}
+```
+### Native Query
+```java
+public interface AdminRepository extends JpaRepository<Admin,Long>{
+    
+    List<Optional<Admin>> findByAdminName(String adminName);
+
+    Optional<Admin> findByAdminUsername(String adminUsername);
+
+    List<Optional<Admin>> findByAdminUsernameAndAdminPassword(String adminUsername, String adminPassword);
+
+    @Query(value = "SELECT * FROM tbl_admin WHERE AGE >= ?1 AND AGE <= ?2", nativeQuery = true)
+    List<Optional<Admin>> findByAgeBetween(int startAge, int endAge);
+}
+```

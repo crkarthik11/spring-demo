@@ -14,11 +14,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table
-public class Book {
-
+public class Borrow {
+    
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long isbn;
+    private Long sid;
+
+    private Long bid;
+
+    public Borrow(Long sid, Long bid) {
+        this.sid = sid;
+        this.bid = bid;
+    }
+
+    
+
 }
