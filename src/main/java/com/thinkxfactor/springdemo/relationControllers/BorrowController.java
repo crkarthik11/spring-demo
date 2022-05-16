@@ -79,6 +79,15 @@ public class BorrowController {
     }
 
     // getStudentsWhoBorrowed
+    @GetMapping("/borrowedBy")
+    public ResponseEntity<?> getBorrowedBy(@RequestParam Long bid) {
+        if(!bookRepository.existsById(bid)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.ok(borrowRepository.findByBid(bid));
+        }
+    }
 
-    // ---- return controller ----
+    // ---- return controller ---- TODO
 }
