@@ -1,4 +1,4 @@
-package com.thinkxfactor.springdemo.entities;
+package com.thinkxfactor.springdemo.relations;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,6 +24,7 @@ public class Borrow {
 
     private Long bid;
 
+    
     public Borrow(Long sid, Long bid) {
         this.sid = sid;
         this.bid = bid;

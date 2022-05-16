@@ -1,10 +1,10 @@
-package com.thinkxfactor.springdemo.controllers;
+package com.thinkxfactor.springdemo.relationControllers;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.thinkxfactor.springdemo.entities.Borrow;
+import com.thinkxfactor.springdemo.relations.Borrow;
 import com.thinkxfactor.springdemo.repository.BookRepository;
 import com.thinkxfactor.springdemo.repository.BorrowRepository;
 import com.thinkxfactor.springdemo.repository.StudentRepository;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -61,8 +62,21 @@ public class BorrowController {
     // getBorrowDetails
 
     // getAllBorrowDetails
+    @GetMapping("/allBorrowDetails")
+    public ResponseEntity<?> getAllBorrowDetails() {
+        return ResponseEntity.ok(borrowRepository.findAll());
+    }
 
     // getBorrowedBooks
+    @GetMapping("/borrowedBooks")
+    public ResponseEntity<?> getBorrowedBooks(@RequestParam Long sid) {
+        if(!studentRepository.existsById(sid)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        else {
+            return ResponseEntity.ok(borrowRepository.findBySid(sid));
+        }
+    }
 
     // getStudentsWhoBorrowed
 

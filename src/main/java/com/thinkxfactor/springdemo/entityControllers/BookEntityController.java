@@ -1,7 +1,7 @@
-package com.thinkxfactor.springdemo.controllers;
+package com.thinkxfactor.springdemo.entityControllers;
 
-import com.thinkxfactor.springdemo.entities.Student;
-import com.thinkxfactor.springdemo.repository.StudentRepository;
+import com.thinkxfactor.springdemo.entities.Book;
+import com.thinkxfactor.springdemo.repository.BookRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,31 +15,31 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/book")
 @CrossOrigin
-public class StudentController {
+public class BookEntityController {
 
     @Autowired
-    StudentRepository studentRepository;
+    BookRepository bookRepository;
 
     // create
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody Student student) {
-        return ResponseEntity.ok(studentRepository.save(student));
+    public ResponseEntity<?> create(@RequestBody Book book) {
+        return ResponseEntity.ok(bookRepository.save(book));
     }
 
     // read
     @GetMapping("/readAll")
     public ResponseEntity<?> readAll() {
-        return ResponseEntity.ok(studentRepository.findAll());
+        return ResponseEntity.ok(bookRepository.findAll());
     }
     @GetMapping("/readById")
     public ResponseEntity<?> readById(@RequestParam Long id) {
-        if(!studentRepository.existsById(id)) {
+        if(!bookRepository.existsById(id)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         else {
-            return ResponseEntity.ok(studentRepository.findById(id));
+            return ResponseEntity.ok(bookRepository.findById(id));
         }
     }
 }
