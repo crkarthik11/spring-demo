@@ -8,6 +8,7 @@ import java.util.Set;
 import com.thinkxfactor.springdemo.repository.BookRepository;
 import com.thinkxfactor.springdemo.repository.BorrowRepository;
 import com.thinkxfactor.springdemo.repository.StudentRepository;
+import com.thinkxfactor.springdemo.services.BookQtyMgr;
 import com.thinkxfactor.springdemo.services.URI_MGR;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,9 @@ public class ReturnController {
     @Autowired
     URI_MGR uMgr;
 
-    // TODO
+    @Autowired
+    BookQtyMgr bookQtyMgr;
+
     // 1. return books
     @DeleteMapping("/returnBooks")
     public ResponseEntity<?> returnBooks(@RequestParam Long sid, @RequestBody List<Long> bidList) {
@@ -56,10 +59,17 @@ public class ReturnController {
                 }
             }
 
+            // handle -ve qty (if any)
+            bookQtyMgr.handleNegQty();
+
             // perform actions
 
             for(Long bid : bidSet) {
+                
                 borrowRepository.deleteBySidAndBid(sid, bid);
+
+                // after returning the book increment its qty by 1
+                bookQtyMgr.bookQtyInc(bid);
             }
 
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();

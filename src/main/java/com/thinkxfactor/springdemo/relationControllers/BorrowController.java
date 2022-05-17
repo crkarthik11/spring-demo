@@ -8,6 +8,7 @@ import com.thinkxfactor.springdemo.relations.Borrow;
 import com.thinkxfactor.springdemo.repository.BookRepository;
 import com.thinkxfactor.springdemo.repository.BorrowRepository;
 import com.thinkxfactor.springdemo.repository.StudentRepository;
+import com.thinkxfactor.springdemo.services.BookQtyMgr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +35,9 @@ public class BorrowController {
     @Autowired
     BorrowRepository borrowRepository;
 
+    @Autowired
+    BookQtyMgr bookQtyMgr;
+
     @PostMapping("/borrowBooks")
     public ResponseEntity<?> borrowBooks(@RequestParam Long sid, @RequestBody List<Long> bidList) {
         
@@ -48,10 +52,18 @@ public class BorrowController {
                 if(!bookRepository.existsById(bid)) {
                     return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
                 }
+                // check if book available (i.e book qty > 0)
+                else if(bookQtyMgr.getBookQty(bid) == 0) {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+                }
             }
 
             // performing actions
             for(Long bid : bidSet) {
+
+                // decrement book qty by 1 when borrowed
+                bookQtyMgr.bookQtyDec(bid);
+
                 borrowRepository.save(new Borrow(sid, bid));
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();

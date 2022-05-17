@@ -1,5 +1,6 @@
 package com.thinkxfactor.springdemo.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,5 +21,16 @@ public class Book {
     @GeneratedValue
     private Long id;
 
+    @Column(unique = true)
     private Long isbn;
+
+    @Column(nullable = false)
+    private Integer qty;
+
+    public Book(Long id, Long isbn) {
+        this.id = id;
+        this.isbn = isbn;
+        this.qty = 0;
+    }
+
 }
