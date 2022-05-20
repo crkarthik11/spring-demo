@@ -16,6 +16,9 @@ public interface BorrowRepository extends JpaRepository<Borrow, Long>{
     @Query("SELECT br.bid FROM Borrow br where br.sid = :SID")
     List<Optional<Long>> findBySid(@Param("SID") Long SID);
 
+    @Query("SELECT br.sid FROM Borrow br")
+    List<Optional<Long>> findAllSid();
+
     @Query("SELECT br.sid FROM Borrow br where br.bid = :BID")
     List<Optional<Long>> findByBid(@Param("BID") Long BID);
 
