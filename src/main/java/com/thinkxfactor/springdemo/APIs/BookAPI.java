@@ -1,7 +1,7 @@
-package com.thinkxfactor.springdemo.entityControllers;
+package com.thinkxfactor.springdemo.APIs;
 
-import com.thinkxfactor.springdemo.entities.Book;
-import com.thinkxfactor.springdemo.repository.BookRepository;
+import com.thinkxfactor.springdemo.models.Book;
+import com.thinkxfactor.springdemo.repo.BookRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/book")
 @CrossOrigin
-public class BookEntityController {
+public class BookAPI {
 
     @Autowired
-    BookRepository bookRepository;
+    BookRepo bookRepository;
 
     // create
     @PostMapping("/create")

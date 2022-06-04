@@ -1,4 +1,4 @@
-package com.thinkxfactor.springdemo.entityControllers;
+package com.thinkxfactor.springdemo.APIs;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -9,6 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/admin")
 @CrossOrigin
-public class AdminEntityController {
+public class AdminAPI {
 
 }

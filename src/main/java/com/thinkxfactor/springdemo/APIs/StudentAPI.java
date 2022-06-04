@@ -1,7 +1,7 @@
-package com.thinkxfactor.springdemo.entityControllers;
+package com.thinkxfactor.springdemo.APIs;
 
-import com.thinkxfactor.springdemo.entities.Student;
-import com.thinkxfactor.springdemo.repository.StudentRepository;
+import com.thinkxfactor.springdemo.models.Student;
+import com.thinkxfactor.springdemo.repo.StudentRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/student")
 @CrossOrigin
-public class StudentEntityController {
+public class StudentAPI {
 
     @Autowired
-    StudentRepository studentRepository;
+    StudentRepo studentRepository;
 
     // create
     @PostMapping("/create")

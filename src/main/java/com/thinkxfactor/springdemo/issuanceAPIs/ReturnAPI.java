@@ -1,15 +1,15 @@
-package com.thinkxfactor.springdemo.relationControllers;
+package com.thinkxfactor.springdemo.issuanceAPIs;
 
 import java.net.URI;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.thinkxfactor.springdemo.repository.BookRepository;
-import com.thinkxfactor.springdemo.repository.BorrowRepository;
-import com.thinkxfactor.springdemo.repository.StudentRepository;
-import com.thinkxfactor.springdemo.services.BookQtyMgr;
-import com.thinkxfactor.springdemo.services.URI_MGR;
+import com.thinkxfactor.springdemo.mgr.BookQtyMgr;
+import com.thinkxfactor.springdemo.mgr.URI_MGR;
+import com.thinkxfactor.springdemo.repo.BookRepo;
+import com.thinkxfactor.springdemo.repo.IssuanceRepo;
+import com.thinkxfactor.springdemo.repo.StudentRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,16 +25,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/return")
 @CrossOrigin
-public class ReturnController {
+public class ReturnAPI {
     
     @Autowired
-    BookRepository bookRepository;
+    BookRepo bookRepository;
     
     @Autowired
-    StudentRepository studentRepository;
+    StudentRepo studentRepository;
     
     @Autowired
-    BorrowRepository borrowRepository;
+    IssuanceRepo borrowRepository;
 
     @Autowired
     URI_MGR uMgr;

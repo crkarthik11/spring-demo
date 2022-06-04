@@ -1,4 +1,4 @@
-package com.thinkxfactor.springdemo.services;
+package com.thinkxfactor.springdemo.mgr;
 
 import org.springframework.stereotype.Service;
 

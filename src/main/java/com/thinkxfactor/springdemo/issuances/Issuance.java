@@ -1,4 +1,4 @@
-package com.thinkxfactor.springdemo.relations;
+package com.thinkxfactor.springdemo.issuances;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table
-public class Borrow {
+public class Issuance {
     
     @Id
     @GeneratedValue
@@ -25,7 +25,7 @@ public class Borrow {
     private Long bid;
 
     
-    public Borrow(Long sid, Long bid) {
+    public Issuance(Long sid, Long bid) {
         this.sid = sid;
         this.bid = bid;
     }

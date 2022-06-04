@@ -1,6 +1,5 @@
-package com.thinkxfactor.springdemo.entities;
+package com.thinkxfactor.springdemo.models;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,22 +14,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table
-public class Book {
+public class Student {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    @Column(unique = true)
-    private Long isbn;
-
-    @Column(nullable = false)
-    private Integer qty;
-
-    public Book(Long id, Long isbn) {
-        this.id = id;
-        this.isbn = isbn;
-        this.qty = 0;
-    }
-
+    private String name;
 }

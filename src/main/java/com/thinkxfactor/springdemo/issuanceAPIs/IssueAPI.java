@@ -1,4 +1,4 @@
-package com.thinkxfactor.springdemo.relationControllers;
+package com.thinkxfactor.springdemo.issuanceAPIs;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -7,13 +7,13 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import com.thinkxfactor.springdemo.entities.Book;
-import com.thinkxfactor.springdemo.entities.Student;
-import com.thinkxfactor.springdemo.relations.Borrow;
-import com.thinkxfactor.springdemo.repository.BookRepository;
-import com.thinkxfactor.springdemo.repository.BorrowRepository;
-import com.thinkxfactor.springdemo.repository.StudentRepository;
-import com.thinkxfactor.springdemo.services.BookQtyMgr;
+import com.thinkxfactor.springdemo.issuances.Issuance;
+import com.thinkxfactor.springdemo.mgr.BookQtyMgr;
+import com.thinkxfactor.springdemo.models.Book;
+import com.thinkxfactor.springdemo.models.Student;
+import com.thinkxfactor.springdemo.repo.BookRepo;
+import com.thinkxfactor.springdemo.repo.IssuanceRepo;
+import com.thinkxfactor.springdemo.repo.StudentRepo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,24 +27,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/borrow")
+@RequestMapping("/issuance")
 @CrossOrigin
-public class BorrowController {
+public class IssueAPI {
 
     @Autowired
-    StudentRepository studentRepository;
+    StudentRepo studentRepository;
 
     @Autowired
-    BookRepository bookRepository;
+    BookRepo bookRepository;
 
     @Autowired
-    BorrowRepository borrowRepository;
+    IssuanceRepo issuanceRepository;
 
     @Autowired
     BookQtyMgr bookQtyMgr;
 
-    @PostMapping("/borrowBooks")
-    public ResponseEntity<?> borrowBooks(@RequestParam Long sid, @RequestBody List<Long> bidList) {
+    @PostMapping("/issueBooks")
+    public ResponseEntity<?> issuanceBooks(@RequestParam Long sid, @RequestBody List<Long> bidList) {
 
         // checking existence of students
         if (!studentRepository.existsById(sid)) {
@@ -65,29 +65,29 @@ public class BorrowController {
             // performing actions
             for (Long bid : bidSet) {
 
-                // decrement book qty by 1 when borrowed
+                // decrement book qty by 1 when issuanceed
                 bookQtyMgr.bookQtyDec(bid);
 
-                borrowRepository.save(new Borrow(sid, bid));
+                issuanceRepository.save(new Issuance(sid, bid));
             }
             return ResponseEntity.status(HttpStatus.ACCEPTED).build();
         }
 
     }
 
-    // getBorrowDetails
+    // getissuanceDetails
 
-    // getAllBorrowDetails
-    @GetMapping("/allBorrowDetails")
-    public ResponseEntity<?> getAllBorrowDetails() {
+    // getAllissuanceDetails
+    @GetMapping("/allIssuanceDetails")
+    public ResponseEntity<?> getAllissuanceDetails() {
 
         // store the records in a HashMap
         Map<Optional<Student>, Set<Optional<Book>>> records = new HashMap<>();
 
         // HashSet for the Student's id (We used set because id(s) are unique)
-        Set<Optional<Long>> sidList = new HashSet<>(borrowRepository.findAllSid());
+        Set<Optional<Long>> sidList = new HashSet<>(issuanceRepository.findAllSid());
 
-        // iterate for each student who borrowed
+        // iterate for each student who issuanceed
         for (Optional<Long> sid : sidList) {
 
             if (sid.isPresent()) {
@@ -95,8 +95,8 @@ public class BorrowController {
 
                     Set<Optional<Book>> bookSet = new HashSet<>();
 
-                    // iterate for each book the student borrowed
-                    for (Optional<Long> bid : borrowRepository.findBySid(sid.get())) {
+                    // iterate for each book the student issuanceed
+                    for (Optional<Long> bid : issuanceRepository.findBySid(sid.get())) {
 
                         if (bid.isPresent()) {
 
@@ -121,9 +121,9 @@ public class BorrowController {
         return ResponseEntity.ok(records);
     }
 
-    // getBorrowedBooks
-    @GetMapping("/borrowedBooks")
-    public ResponseEntity<?> getBorrowedBooks(@RequestParam Long sid) {
+    // getissuanceedBooks
+    @GetMapping("/issuedBooks")
+    public ResponseEntity<?> getissuanceedBooks(@RequestParam Long sid) {
         if (!studentRepository.existsById(sid)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
@@ -132,7 +132,7 @@ public class BorrowController {
             Set<Optional<Book>> bookSet = new HashSet<>();
 
             // list of book's id
-            List<Optional<Long>> bidList = borrowRepository.findBySid(sid);
+            List<Optional<Long>> bidList = issuanceRepository.findBySid(sid);
 
             // add book object(s) according to the id(s)
             for (Optional<Long> id : bidList) {
@@ -147,9 +147,9 @@ public class BorrowController {
         }
     }
 
-    // getStudentsWhoBorrowed
-    @GetMapping("/borrowedBy")
-    public ResponseEntity<?> getBorrowedBy(@RequestParam Long bid) {
+    // getStudentsWhoissuanceed
+    @GetMapping("/issuedBy")
+    public ResponseEntity<?> getissuanceedBy(@RequestParam Long bid) {
         if (!bookRepository.existsById(bid)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         } else {
@@ -158,7 +158,7 @@ public class BorrowController {
             Set<Optional<Student>> studentSet = new HashSet<>();
 
             // list of student's id
-            List<Optional<Long>> sidList = borrowRepository.findByBid(bid);
+            List<Optional<Long>> sidList = issuanceRepository.findByBid(bid);
 
             // add student object(s) according to the id(s)
             for (Optional<Long> id : sidList) {

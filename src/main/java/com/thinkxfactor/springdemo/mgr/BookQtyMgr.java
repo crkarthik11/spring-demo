@@ -1,16 +1,16 @@
-package com.thinkxfactor.springdemo.services;
-
-import com.thinkxfactor.springdemo.repository.BookRepository;
+package com.thinkxfactor.springdemo.mgr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.thinkxfactor.springdemo.repo.BookRepo;
 
 
 @Service
 public class BookQtyMgr {
 
     @Autowired
-    BookRepository bookRepository;
+    BookRepo bookRepository;
 
     /**
      * Increment operations
